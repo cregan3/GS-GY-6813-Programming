@@ -44,6 +44,11 @@ class ABFile():
   def close(self):
     self.Afile.close()
     self.Bfile.close()
+    lengthA = len(self.Afile.readat(None,0))
+    lengthB = len(self.Bfile.readat(None,0))
+    if self.Afile[0]=="S" and self.Afile[lengthA-1]=="E" and self.Bfile[0]=="S" and self.Bfile[lengthB-1]=="E":
+        self.Afile.writeat(self.Bfile.readat(None,0),0)
+        openfile(self.Afn,true).writeat(Afile.readat(None,0))
 
 
 def ABopenfile(filename, create):
