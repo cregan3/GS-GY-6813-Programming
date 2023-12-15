@@ -34,10 +34,8 @@ class ABFile():
         self.Bfile = openfile(self.Bfn,create)
         self.Bfile.writeat(self.Afile.readat(None,0),0)
     else:
-      if self.Afn not in listfiles():
-        self.Afile = openfile(self.Afn,create)  
-      if self.Bfn not in listfiles():
-        self.Bfile = openfile(self.Bfn,create)  
+      self.Afile = openfile(self.Afn,create)  
+      self.Bfile = openfile(self.Bfn,create)  
 
   def writeat(self,data,offset):
     # Write the requested data to the B file using the sandbox's writeat call
