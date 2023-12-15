@@ -26,10 +26,10 @@ class ABFile():
         self.Bfn = filename+'.b'
         self.Lock = createlock()
         self.Lock.acquire(True)
-        if self.Afn in listfiles():
-    	    removefile(self.Afn)
-        if self.Bfn in listfiles():
-    	    removefile(self.Bfn)
+        #if self.Afn in listfiles():
+    	#    removefile(self.Afn)
+        #if self.Bfn in listfiles():
+    	#    removefile(self.Bfn)
     
         # make the files and add 'SE' to the readat file...
         if create:
@@ -46,22 +46,22 @@ class ABFile():
         self.lock = createlock()
         self.lock.acquire(True)
         # Write the requested data to the B file using the sandbox's writeat call
-        if offset < 0 or offset > len(self.Bfile.readat(None,0)):
-        else:
-            self.Bfile.writeat(data,offset)
-            self.lock.release()
+        #if offset < 0 or offset > len(self.Bfile.readat(None,0)):
+        #else:
+        self.Bfile.writeat(data,offset)
+        self.lock.release()
   
     def readat(self,bytes,offset):
         self.lock = createlock()
         self.lock.acquire(True)
         # Read from the A file using the sandbox's readat...
         lengthA = len(self.Afile.readat(None,0))
-        if offset < 0 or lengthA < 0 or offset >= len(self.Afile.readat(None,0)) or :
-        elif bytes != None and bytes > length:
-        else:
-            ReadA = self.Afile.readat(bytes,offset)
-            self.lock.release()
-            return ReadA
+        #if offset < 0 or lengthA < 0 or offset >= len(self.Afile.readat(None,0)) or :
+        #elif bytes != None and bytes > length:
+        #else:
+        ReadA = self.Afile.readat(bytes,offset)
+        self.lock.release()
+        return ReadA
 
     def close(self):
         lengthA = len(self.Afile.readat(None,0))
@@ -71,10 +71,10 @@ class ABFile():
         if self.Afile[0]=="S" and self.Afile[lengthA-1]=="E" and self.Bfile[0]=="S" and self.Bfile[lengthB-1]=="E":
             self.Afile.writeat(self.Bfile.readat(None,0),0)
             openfile(self.Afn,true).writeat(Afile.readat(None,0))
-            removefile(self.Bfn)
+            #removefile(self.Bfn)
         else:
             openfile(self.Afn,true).writeat(Afile.readat(None,0))
-            removefile(self.Bfn)
+            #removefile(self.Bfn)
 
     def ABopenfile(filename, create):
         return ABFile(filename,create)
