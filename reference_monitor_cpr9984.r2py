@@ -33,8 +33,8 @@ class ABFile():
       self.Bfile = openfile(self.Bfn,create)
       self.Afile.writeat('SE',0)
     else:
-      self.Afile = openfile(self.Afn,create)
-      self.Bfile = openfile(self.Bfn,create)
+      self.Afile = openfile(self.Afn,true)
+      self.Bfile = openfile(self.Bfn,true)
       self.Bfile.writeat(self.Afile.readat(None,0),0)
 
 
