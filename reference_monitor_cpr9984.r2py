@@ -57,8 +57,12 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
-    self.Afile.close()
-    self.Bfile.close()
+    if dataB[0] == 'S' and dataB[lengthB - 1] == 'E':
+      self.Afile.close()
+      self.Bfile.close()
+    else:
+      self.Afile.close()
+      self.Bfile.close()
 
 
 def ABopenfile(filename, create):
