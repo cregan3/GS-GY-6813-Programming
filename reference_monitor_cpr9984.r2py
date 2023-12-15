@@ -17,6 +17,10 @@ TARGET="target"
 FUNC="func"
 OBJC="objc"
 
+mycontext['pagecount'] = 0
+mycontext['stoplock'] = getlock()
+if len(callargs) <= 1:
+
 mycontext['lock']= createlock()
 class ABFile():
   def __init__(self,filename,create):
@@ -55,8 +59,10 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
+    mycontext['lock'].acquire(True)
     self.Afile.close()
     self.Bfile.close()
+    mycontext['lock'].release()
 
 
 def ABopenfile(filename, create):
