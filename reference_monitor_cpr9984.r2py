@@ -35,7 +35,8 @@ class ABFile():
         self.Bfile.writeat(self.Afile.readat(None,0),0)
     else:
       self.Afile = openfile(self.Afn,create)  
-      self.Bfile = openfile(self.Bfn,create)  
+      self.Bfile = openfile(self.Bfn,true)
+      self.Bfile.writeat(self.Afile.readat(None,0),0)
 
   def writeat(self,data,offset):
     # Write the requested data to the B file using the sandbox's writeat call
