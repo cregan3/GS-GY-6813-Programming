@@ -59,10 +59,10 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
-    mycontext['lock'].acquire(True)
+    
     self.Afile.close()
     self.Bfile.close()
-    mycontext['lock'].release()
+    
 
 
 def ABopenfile(filename, create):
