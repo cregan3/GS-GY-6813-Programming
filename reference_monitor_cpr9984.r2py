@@ -59,6 +59,9 @@ class ABFile():
     lengthB = len(self.Bfile.readat(None,0))
 
     #TODO #1 check if self.Afile starts with "S" and ends with "E"
+
+    self.Afile.close()
+    self.Bfile.close()
     if self.Afile[0]=="S":
       if self.Afile[lengthA-1]=="E":
         #TODO #2 check if self.Bfile starts with "S" and ends with "E"
@@ -66,8 +69,6 @@ class ABFile():
           if self.Bfile[lengthB-1]=="E":
             #TODO #3 update original file if new data is valid
             self.Afile.writeat(self.Bfile.readat(None,0),0)
-    self.Afile.close()
-    self.Bfile.close()
 
   def ABopenfile(filename, create):
     return ABFile(filename,create)
