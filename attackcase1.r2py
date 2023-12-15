@@ -19,5 +19,3 @@ try:
  myfile.close()
 except:
  myfile.close()
- # Error Handle or Failure Condition
- log("File is bad")
