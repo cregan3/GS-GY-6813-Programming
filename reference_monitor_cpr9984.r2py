@@ -41,10 +41,14 @@ class ABFile():
 
   def writeat(self,data,offset):
     # Write the requested data to the B file using the sandbox's writeat call
+    if offset < 0:
+        offset = 0
     self.Bfile.writeat(data,offset)
 
   def readat(self,bytes,offset):
     # Read from the A file using the sandbox's readat...
+    if self.Afn not in listfiles():
+        self.Afile = openfile(self.Afn,True)
     return self.Afile.readat(bytes,offset)
 
   def close(self):
