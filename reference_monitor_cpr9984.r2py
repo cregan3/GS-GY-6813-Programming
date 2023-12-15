@@ -1,12 +1,23 @@
-TYPE = 'type'
-ARGS = 'args'
-RETURN = 'return'
-EXCP = 'exceptions'
-TARGET = 'target'
-FUNC = 'func'
-OBJC = 'objc'
+"""
+This security layer inadequately handles A/B storage for files in RepyV2.
 
 
+
+Note:
+    This security layer uses encasementlib.r2py, restrictions.default, repy.py and Python
+    Also you need to give it an application to run.
+    python repy.py restrictions.default encasementlib.r2py [security_layer].r2py [attack_program].r2py 
+    
+    """ 
+TYPE="type"
+ARGS="args"
+RETURN="return"
+EXCP="exceptions"
+TARGET="target"
+FUNC="func"
+OBJC="objc"
+
+mycontext['lock']= createlock()
 class ABFile:
 
     def __init__(self, filename, create):
