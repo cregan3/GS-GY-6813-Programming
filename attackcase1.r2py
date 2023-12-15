@@ -9,12 +9,12 @@ myfile=ABopenfile("testfile.txt",True)  #Create an AB file
 
 
 myfile.writeat('abcdefg',0)
- # Close the file:
- myfile.close()
+# Close the file:
+myfile.close()
 myfile = ABopenfile("testfile.txt",False)
 
 try:
- assert("ABC" == myfile.readat(None,0))
+  assert("ABC" == myfile.readat(None,0))
 finally:
- # Close the file: 
- myfile.close()
+  # Close the file: 
+  myfile.close()
