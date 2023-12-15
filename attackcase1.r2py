@@ -15,7 +15,6 @@ myfile = ABopenfile("testfile.txt",False)
 
 try:
  assert("ABC" == myfile.readat(None,0))
- # Close the file:
- myfile.close()
-except:
+finally:
+ # Close the file: 
  myfile.close()
