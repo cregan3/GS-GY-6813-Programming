@@ -37,7 +37,7 @@ class ABFile:
                 self.Afile = openfile(self.Afn, true)
                 self.Bfile = openfile(self.Bfn, true)
             else:
-                raise FileNotFoundError
+#                raise FileNotFoundError
         self.Bfile.writeat(self.Afile.readat(None, 0), 0)
 
     def writeat(self, data, offset):
@@ -48,10 +48,10 @@ class ABFile:
         self.lock.acquire(True)
         lengthB = len(self.Bfile.readat(None, 0))
         if offset < 0:
-            raise RepyArgumentError
+#            raise RepyArgumentError
             self.lock.release()
         elif offset > lengthB:
-            raise SeekPastEndOfFileError
+#            raise SeekPastEndOfFileError
             self.lock.release()
         else:
             self.Bfile.writeat(data, offset)
@@ -65,10 +65,10 @@ class ABFile:
         self.lock.acquire(True)
         lengthA = len(self.Afile.readat(None, 0))
         if offset < 0 or lengthA < 0:
-            raise RepyArgumentError
+#            raise RepyArgumentError
             self.lock.release()
         elif offset >= lengthA:
-            raise SeekPastEndOfFileError
+#            raise SeekPastEndOfFileError
             self.lock.release()
         else:
             self.lock.release()
