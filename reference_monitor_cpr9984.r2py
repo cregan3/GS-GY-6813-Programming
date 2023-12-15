@@ -83,7 +83,7 @@ class ABFile():
     lengthA = len(dataA)
     lengthB = len(dataB)
     fileA = self.Afn
-    if dataB[0] == 'S' and DataB[lengthB - 1] == 'E':
+    if dataB[0] == 'S' and dataB[lengthB - 1] == 'E':
       self.Afile.close()
       self.Bfile.close()
       removefile(self.Afn)
