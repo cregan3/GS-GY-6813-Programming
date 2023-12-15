@@ -1,66 +1,64 @@
-"""
-This security layer inadequately handles A/B storage for files in RepyV2.
+TYPE = 'type'
+ARGS = 'args'
+RETURN = 'return'
+EXCP = 'exceptions'
+TARGET = 'target'
+FUNC = 'func'
+OBJC = 'objc'
 
 
+class ABFile:
 
-Note:
-    This security layer uses encasementlib.r2py, restrictions.default, repy.py and Python
-    Also you need to give it an application to run.
-    python repy.py restrictions.default encasementlib.r2py [security_layer].r2py [attack_program].r2py 
-    
-    """ 
-TYPE="type"
-ARGS="args"
-RETURN="return"
-EXCP="exceptions"
-TARGET="target"
-FUNC="func"
-OBJC="objc"
+    def __init__(self, filename, create):
 
-class ABFile():
-  def __init__(self,filename,create):
     # globals
-    mycontext['debug'] = False   
+
+        mycontext['debug'] = False
+
     # local (per object) reference to the underlying file
-    self.Afn = filename+'.a'
-    self.Bfn = filename+'.b'
-    
+
+        self.Afn = filename + '.a'
+        self.Bfn = filename + '.b'
+
     # make the files and add 'SE' to the readat file...
-    if self.Bfn in listfiles():
-        removefile(self.Bfn)
-    if create:
-      self.Afile = openfile(self.Afn,create)
-      self.Bfile = openfile(self.Bfn,true)
-      self.Afile.writeat('SE',0)
-    else:
-      self.Afile = openfile(self.Afn,false)
-      self.Bfile = openfile(self.Bfn,true)
-    self.Bfile.writeat(self.Afile.readat(None,0),0)
 
-  def writeat(self,data,offset):
-    
+        if self.Bfn in listfiles():
+            removefile(self.Bfn)
+        if create:
+            self.Bfile.writeat(self.Afile.readat(None, 0), 0)
+            self.Afile = openfile(self.Afn, create)
+            self.Bfile = openfile(self.Bfn, true)
+            self.Afile.writeat('SE', 0)
+        else:
+            self.Afile = openfile(self.Afn, false)
+            self.Bfile = openfile(self.Bfn, true)
+        self.Bfile.writeat(self.Afile.readat(None, 0), 0)
+
+    def writeat(self, data, offset):
+
     # Write the requested data to the B file using the sandbox's writeat call
-    self.Bfile.writeat(data,offset)
-  
-  def readat(self,bytes,offset):
-    # Read from the A file using the sandbox's readat...
-    return self.Afile.readat(bytes,offset)
 
-  def close(self):
-    lengthA = len(self.Afile.readat(None,0))
-    lengthB = len(self.Bfile.readat(None,0))
-    if self.Bfile[0]=="S" and self.Bfile[lengthB-1]=="E":
-        self.Afile.writeat(self.Bfile.readat(None,0),0)
-        openfile(self.Afn,true).writeat(self.Afile.readat(None,0))
-        openfile(filename,true).writeat(self.Afile.readat(None,0))
-    else:
-        self.Bfile.close()
-        
+        self.Bfile.writeat(data, offset)
+
+    def readat(self, bytes, offset):
+
+    # Read from the A file using the sandbox's readat...
+
+        return self.Afile.readat(bytes, offset)
+
+    def close(self):
+        lengthA = len(self.Afile.readat(None, 0))
+        lengthB = len(self.Bfile.readat(None, 0))
+        if self.Bfile[0] == 'S' and self.Bfile[lengthB - 1] == 'E':
+            self.Afile.writeat(self.Bfile.readat(None, 0), 0)
+            openfile(self.Afn, true).writeat(self.Afile.readat(None, 0))
+            openfile(filename, true).writeat(self.Afile.readat(None, 0))
+        else:
+            self.Bfile.close()
+
 
 def ABopenfile(filename, create):
-  return ABFile(filename,create)
-
-
+    return ABFile(filename, create)
 
 
 # The code here sets up type checking and variable hiding for you.  You
