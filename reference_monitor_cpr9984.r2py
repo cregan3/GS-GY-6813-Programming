@@ -62,6 +62,7 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
+    mycontext['lock'].acquire(True)
     try:  
       dataA = self.Afile.readat(None,0)
       dataB = self.Bfile.readat(None,0)
