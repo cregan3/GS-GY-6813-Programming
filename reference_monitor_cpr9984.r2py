@@ -72,9 +72,9 @@ class ABFile():
       lastB = lengthB - 1
       if self.Bfile.readat(1,0) == "S" and self.Bfile.readat(1,lastB) == "E":
         self.Afile.writeat(dataB,0)
-      mycontext['lock'].release()
+      
     finally:
-      mycontext['lock'].acquire(True)
+      
       self.Afile.close()
       self.Bfile.close()
       mycontext['lock'].release()
