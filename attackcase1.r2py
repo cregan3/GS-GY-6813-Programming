@@ -7,7 +7,7 @@ if "testfile.txt.b" in listfiles():
 # Open File Function Call
 myfile=ABopenfile("testfile.txt",True)  #Create an AB file
 
-
+myfile.writeat('SabcE',0)
 myfile.writeat('abc',0)
 myfile.writeat('abcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefg',0)
 myfile.writeat('defg',0)
@@ -17,3 +17,13 @@ myfile=ABopenfile("testfile.txt",False)  #Create an AB file
 myfile.close()
 
 
+try:
+ assert(ABopenfile("test.txt",False))
+ myfile=ABopenfile("test.txt",False)
+
+ # Read the file contents
+ data = myfile.readat(14,0)
+ #Close the file
+ myfile.close()
+except:
+ log("Reopening an existing file is unsuccessfull! Accuracy compromised!!!")
