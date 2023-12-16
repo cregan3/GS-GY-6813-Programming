@@ -59,7 +59,6 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
-    mycontext['lock'].acquire(True)
     dataA = self.Afile.readat(None,0)
     dataB = self.Bfile.readat(None,0)
     lengthA = len(dataA)
@@ -69,7 +68,6 @@ class ABFile():
       dataA = dataB
     self.Afile.close()
     self.Bfile.close()
-    mycontext['lock'].release()
 
 
 def ABopenfile(filename, create):
