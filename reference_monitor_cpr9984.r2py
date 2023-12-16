@@ -63,15 +63,17 @@ class ABFile():
       mycontext['lock'].release()
 
   def close(self):
-    dataA = self.Afile.readat(None,0)
-    dataB = self.Bfile.readat(None,0)
-    lengthA = len(dataA)
-    lengthB = len(dataB)
-    lastB = lengthB - 1
-    if dataB[0] == "S" and dataB[lastB] == "E":
-      self.Afile.writeat(dataB,0)
-    self.Afile.close()
-    self.Bfile.close()
+    try:  
+      dataA = self.Afile.readat(None,0)
+      dataB = self.Bfile.readat(None,0)
+      lengthA = len(dataA)
+      lengthB = len(dataB)
+      lastB = lengthB - 1
+      if dataB[0] == "S" and dataB[lastB] == "E" and lengthB > 0:
+        self.Afile.writeat(dataB,0)
+    finally:
+      self.Afile.close()
+      self.Bfile.close()
 
 
 
