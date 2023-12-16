@@ -8,7 +8,7 @@ if "testfile.txt.b" in listfiles():
 myfile=ABopenfile("testfile.txt",True)  #Create an AB file
 
 
-myfile.writeat('abcdefg',0)
+myfile.writeat('abcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefgabcdddddddddddddddddddddddddddddddddddefg',0)
 # Close the file:
 myfile.close()
 myfile=ABopenfile("testfile.txt",False)  #Create an AB file
