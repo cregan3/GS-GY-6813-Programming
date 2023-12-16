@@ -53,7 +53,7 @@ class ABFile():
   def readat(self,bytes,offset):
     # Read from the A file using the sandbox's readat...
     mycontext['lock'].acquire(True)
-    #if offset < self.Afile.readat(None,0) or offset == None:
+    if offset < self.Afile.readat(None,0):
       try:
         return self.Afile.readat(bytes,offset)
       finally:
