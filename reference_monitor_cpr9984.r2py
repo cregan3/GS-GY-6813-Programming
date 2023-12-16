@@ -25,7 +25,6 @@ class ABFile():
     # globals
     mycontext['debug'] = False
     # local (per object) reference to the underlying file
-    
     self.Afn = filename+'.a'
     self.Bfn = filename+'.b'
     if self.Bfn in listfiles():
@@ -39,7 +38,7 @@ class ABFile():
       self.Afile = openfile(self.Afn,create)
       self.Bfile = openfile(self.Bfn,True)
       self.Bfile.writeat(self.Afile.readat(None,0),0)
-    
+
 
   def writeat(self,data,offset):
     
@@ -73,10 +72,10 @@ class ABFile():
       lastB = lengthB - 1
       if self.Bfile.readat(1,0) == "S" and self.Bfile.readat(1,lastB) == "E":
         self.Afile.writeat(dataB,0)
+      mycontext['lock'].release()
     finally:
       self.Afile.close()
       self.Bfile.close()
-      mycontext['lock'].release()
 
 
 
