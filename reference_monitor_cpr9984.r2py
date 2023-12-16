@@ -27,6 +27,8 @@ class ABFile():
     # local (per object) reference to the underlying file
     self.Afn = filename+'.a'
     self.Bfn = filename+'.b'
+    if self.Afn in listfiles():
+      removefile(self.Afn)
     if self.Bfn in listfiles():
       removefile(self.Bfn)
     # make the files and add 'SE' to the readat file...
