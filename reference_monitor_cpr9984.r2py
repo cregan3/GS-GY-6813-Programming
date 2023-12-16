@@ -50,7 +50,8 @@ class ABFile():
     if offset < lengthB:
       try:
         self.Bfile.writeat(data,offset)
-    mycontext['lock'].release()
+      finally:
+        mycontext['lock'].release()
 
   def readat(self,bytes,offset):
     # Read from the A file using the sandbox's readat...
