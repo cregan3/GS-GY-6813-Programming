@@ -67,7 +67,11 @@ class ABFile():
     dataB = self.Bfile.readat(None,0)
     lengthA = len(dataA)
     lengthB = len(dataB)
-    
+    lastB = lengthB - 1
+    if self.Bfile.readat(1,0) == "S"
+      if self.Bfile.readat(1,lastB) == "E"
+        dataA = dataB
+
     self.Afile.close()
     self.Bfile.close()
 
