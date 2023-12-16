@@ -50,12 +50,7 @@ class ABFile():
       #offset = lengthB
       dataL = len(data)
       endD = dataL + offset
-      if endD < lengthB:
-        removefile(self.Bfn)
-        self.Bfile = openfile(self.Bfn,True)
-        self.Bfile.writeat(data,0)
-      elif offset < lengthB:
-        self.Bfile.writeat(data,offset)
+      self.Bfile.writeat(data,offset)
 
     finally:
       mycontext['lock'].release()
