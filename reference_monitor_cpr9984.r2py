@@ -68,10 +68,8 @@ class ABFile():
     lengthA = len(dataA)
     lengthB = len(dataB)
     lastB = lengthB - 1
-    if self.Bfile.readat(1,0) == "S":
-      if self.Bfile.readat(1,lastB) == "E":
-        dataA = dataB
-        self.Afile.writeat(dataA,0)
+    if dataB[0] == "S" and dataB[lastB] == "E":
+      self.Afile.writeat(dataB,0)
     self.Afile.close()
     self.Bfile.close()
 
