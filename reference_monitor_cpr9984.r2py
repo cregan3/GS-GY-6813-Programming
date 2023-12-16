@@ -57,8 +57,8 @@ class ABFile():
     mycontext['lock'].acquire(True)
     try:
       lengthA = len(self.Afile.readat(None,0))
-      #if offset < lengthA:
-      return self.Afile.readat(bytes,offset)
+      if offset < lengthA and lengthA > 0 and offset >= 0:
+        return self.Afile.readat(bytes,offset)
     finally:
       mycontext['lock'].release()
 
