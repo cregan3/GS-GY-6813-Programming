@@ -47,7 +47,7 @@ class ABFile():
     try:  
       lengthB = len(self.Bfile.readat(None,0))
       #offset = 0
-      offset = max(offset, lengthB)
+      #offset = max(offset, lengthB)
       self.Bfile.writeat(data,offset)
     finally:
       mycontext['lock'].release()
@@ -57,8 +57,8 @@ class ABFile():
     mycontext['lock'].acquire(True)
     try:
       lengthA = len(self.Afile.readat(None,0))
-      if offset < lengthA:
-        return self.Afile.readat(bytes,offset)
+      #if offset < lengthA:
+      return self.Afile.readat(bytes,offset)
     finally:
       mycontext['lock'].release()
 
