@@ -64,8 +64,10 @@ class ABFile():
   def close(self):
 
     try:  
+      mycontext['lock'].acquire(True)
       dataA = self.Afile.readat(None,0)
       dataB = self.Bfile.readat(None,0)
+      mycontext['lock'].release()
       lengthB = len(dataB)
       lastB = lengthB - 1
       if self.Bfile.readat(1,0) == "S" and self.Bfile.readat(1,lastB) == "E":
