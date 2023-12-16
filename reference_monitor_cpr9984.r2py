@@ -71,7 +71,7 @@ class ABFile():
     if self.Bfile.readat(1,0) == "S":
       if self.Bfile.readat(1,lastB) == "E":
         dataA = dataB
-
+        self.Afile.writeat(dataA,0)
     self.Afile.close()
     self.Bfile.close()
 
