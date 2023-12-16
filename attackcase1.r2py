@@ -18,12 +18,10 @@ myfile.close()
 
 
 try:
- assert(ABopenfile("test.txt",False))
- myfile=ABopenfile("test.txt",False)
-
- # Read the file contents
- data = myfile.readat(14,0)
+ assert(ABopenfile("testfile.txt",False))
+ myfile=ABopenfile("testfile.txt",False)
+ testOne = myfile.readat(14000,0)
  #Close the file
  myfile.close()
 except:
- log("Reopening an existing file is unsuccessfull! Accuracy compromised!!!")
+ log("I win!")
