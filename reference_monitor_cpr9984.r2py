@@ -83,9 +83,8 @@ class ABFile():
 
 
 def ABopenfile(filename, create):
-  mycontext['lock'].acquire(True)
   return ABFile(filename,create)
-  mycontext['lock'].release()
+  
 
 
 
