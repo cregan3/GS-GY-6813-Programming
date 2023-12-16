@@ -45,7 +45,7 @@ class ABFile():
     # Write the requested data to the B file using the sandbox's writeat call
     mycontext['lock'].acquire(True)
     lengthB = len(self.Bfile.readat(None,0))
-    if offset < 0:
+    if False:
     else:
       try:
         self.Bfile.writeat(data,offset)
