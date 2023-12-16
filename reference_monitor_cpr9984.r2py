@@ -48,13 +48,15 @@ class ABFile():
       lengthB = len(self.Bfile.readat(None,0))
       #offset = 0
       #offset = lengthB
-      if offset = 0 and offset + len(data) < lengthB:
+      dataL = len(data)
+      endD = dataL + offset
+      if offset = 0 and endD < lengthB:
         removefile(self.Bfn)
         self.Bfile = openfile(self.Bfn,True)
+        self.Bfile.writeat(data,0)
+      elif offset < lengthB and endD >= lengthB:
         self.Bfile.writeat(data,offset)
-      elif offset < lengthB and offset + len(data) >= lengthB:
-        self.Bfile.writeat(data,offset)
-      elif offset < lengthB and offset + len(data) < lengthB:
+      elif offset < lengthB and endD < lengthB:
         dataB = self.Bfile.readat(offset,0)
         removefile(self.Bfn)
         self.Bfile = openfile(self.Bfn,True)
