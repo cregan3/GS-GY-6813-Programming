@@ -63,8 +63,6 @@ class ABFile():
     dataB = self.Bfile.readat(None,0)
     lengthA = len(dataA)
     lengthB = len(dataB)
-    if dataB[0] == 'S' and dataB[lengthB - 1] == 'E':
-      dataA = dataB
     self.Afile.close()
     self.Bfile.close()
 
