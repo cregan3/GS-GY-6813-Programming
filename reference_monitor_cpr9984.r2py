@@ -44,9 +44,9 @@ class ABFile():
     
     # Write the requested data to the B file using the sandbox's writeat call
     mycontext['lock'].acquire(True)
-    lengthB = len(self.Bfile.readat(None,0))
-    offset = 0
-    try:
+    try:  
+      lengthB = len(self.Bfile.readat(None,0))
+      offset = 0
       self.Bfile.writeat(data,offset)
     finally:
       mycontext['lock'].release()
@@ -54,11 +54,13 @@ class ABFile():
   def readat(self,bytes,offset):
     # Read from the A file using the sandbox's readat...
     mycontext['lock'].acquire(True)
-    if offset < len(self.Afile.readat(None,0)):
-      try:
+    
+    try:
+      lengthA = len(self.Afile.readat(None,0))
+      if offset < lengthA:
         return self.Afile.readat(bytes,offset)
-      finally:
-        mycontext['lock'].release()
+    finally:
+      mycontext['lock'].release()
     else:
       mycontext['lock'].release()
 
@@ -66,13 +68,11 @@ class ABFile():
     try:  
       dataA = self.Afile.readat(None,0)
       dataB = self.Bfile.readat(None,0)
-      lengthA = len(dataA)
       lengthB = len(dataB)
       lastB = lengthB - 1
       if self.Bfile.readat(1,0) == "S":
         if self.Bfile.readat(1,lastB) == "E":
-          dataA = dataB
-          self.Afile.writeat(dataA,0)
+          self.Afile.writeat(dataB,0)
     finally:
       self.Afile.close()
       self.Bfile.close()
