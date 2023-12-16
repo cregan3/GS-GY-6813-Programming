@@ -59,6 +59,8 @@ class ABFile():
         return self.Afile.readat(bytes,offset)
       finally:
         mycontext['lock'].release()
+    else:
+      mycontext['lock'].release()
 
   def close(self):
     dataA = self.Afile.readat(None,0)
